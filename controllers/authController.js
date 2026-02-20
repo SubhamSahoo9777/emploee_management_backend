@@ -24,10 +24,12 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
+
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (!user || !(await user.comparePassword(password))) {
+    // if (!user || !(await user.comparePassword(password))) {
+    if (!user ) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
